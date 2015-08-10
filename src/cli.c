@@ -1,4 +1,4 @@
-/*
+ /*
  * This file is part of baseflight
  * Licensed under GPL V3 or modified DCL - see https://github.com/multiwii/baseflight/blob/master/README.md
  */
@@ -27,6 +27,9 @@ static void cliSet(char *cmdline);
 static void cliServo(char *cmdline);
 static void cliServoMix(char *cmdline);
 static void cliStatus(char *cmdline);
+#ifdef USBLINKER
+static void cliUSBLinker(char *cmdline);
+#endif
 static void cliVersion(char *cmdline);
 
 // from sensors.c
@@ -110,6 +113,9 @@ const clicmd_t cmdTable[] = {
     { "set", "name=value or blank or * for list", cliSet },
     { "smix", "design custom servo mixer", cliServoMix },
     { "status", "show system status", cliStatus },
+#ifdef USBLINKER
+    { "usblinker", "flash simonk escs", cliUSBLinker },
+#endif
     { "version", "", cliVersion },
 };
 #define CMD_COUNT (sizeof(cmdTable) / sizeof(clicmd_t))
@@ -1285,6 +1291,15 @@ static void cliStatus(char *cmdline)
 
     printf("Cycle Time: %d, I2C Errors: %d, config size: %d\r\n", cycleTime, i2cGetErrorCounter(), sizeof(master_t));
 }
+
+#ifdef USBLINKER
+static void cliUSBLinker(char *cmdline)
+{
+//    (void)cmdline;
+
+    USBLinker(cmdline);
+}
+#endif
 
 static void cliVersion(char *cmdline)
 {
