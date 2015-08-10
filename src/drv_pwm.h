@@ -61,3 +61,4 @@ void pwmWriteServo(uint8_t index, uint16_t value);
 uint16_t pwmRead(uint8_t channel);
 
 // void pwmWrite(uint8_t channel, uint16_t value);
+void pwmShutdownPulsesForAllMotors(uint8_t motorCount);

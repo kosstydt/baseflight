@@ -229,6 +229,7 @@ typedef struct baro_t {
 #define LED1
 #define INVERTER
 #define MOTOR_PWM_RATE 400
+#define USBLINKER
 
 #define SENSORS_SET (SENSOR_ACC | SENSOR_BARO | SENSOR_MAG)
 #define I2C_DEVICE (I2CDEV_2)

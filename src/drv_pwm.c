@@ -476,3 +476,12 @@ uint16_t pwmRead(uint8_t channel)
 {
     return captures[channel];
 }
+void pwmShutdownPulsesForAllMotors(uint8_t motorCount)
+{
+    uint8_t index;
+
+    for(index = 0; index < motorCount; index++){
+        // Set the compare register to 0, which stops the output pulsing if the timer overflows
+        *motors[index]->ccr = 0;
+    }
+} 
